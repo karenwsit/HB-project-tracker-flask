@@ -50,19 +50,17 @@ def get_project_by_title(title):
     print "Title: %s\nDescription: %s\nMax Grade: %d" % row
 
 
-def get_grade_by_github_title(github, title):
+def get_titlegrade_by_github(github):
     """Print grade student received for a project."""
 
     QUERY = """
-        SELECT grade
+        SELECT project_title, grade
         FROM Grades
         WHERE student_github = ?
-          AND project_title = ?
         """
-    db_cursor.execute(QUERY, (github, title))
-    row = db_cursor.fetchone()
-    print "Student %s in project %s received grade of %s" % (
-        github, title, row[0])
+    db_cursor.execute(QUERY, (github,))
+    rows = db_cursor.fetchall()
+    return rows
 
 
 def assign_grade(github, title, grade):
