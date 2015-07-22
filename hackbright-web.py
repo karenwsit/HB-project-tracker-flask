@@ -36,7 +36,8 @@ def student_add():
     Github = request.form.get("github")
     hackbright.make_new_student(Fname, Lname, Github)
     return render_template('new_student_confirm.html', fname=Fname, lname=Lname, github=Github)
-    
+  
+@app.route('/project', methods=['GET'])
                          
 
 
